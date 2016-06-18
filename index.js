@@ -9,4 +9,4 @@ server.get('/', function(request, response){
 
 server.listen(8080, function(){
   console.log('Now listening for requests');
-}};
+});
