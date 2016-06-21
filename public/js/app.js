@@ -1,4 +1,4 @@
-// $-jquery, document= html .ready makes sure jquery doesnt
+// $-jquery, document= html, .ready makes sure jquery doesnt
 // show up until everything else is fully loaded
 // function(){} anonymous function
 // $start= letting me know that we're using jquery, not syntax required
@@ -7,6 +7,7 @@ $(document).ready(function(){
   var start = $('#start');
   var minutes = $('#minutes');
   var seconds = $('#seconds');
+  var breakBtn = $('#break');
 
 // setup
   start.on('click', startCountdown);
@@ -16,6 +17,10 @@ $(document).ready(function(){
     setInterval(function(){
       var secondsVal = +seconds.text(); //plus sign makes this behave like a num
       var minutesVal = +minutes.text();
+      if(secondsVal === 0 && minutesVal === 0){
+        breakBtn.removeClass('disabled');
+        breakBtn.removeAttr('disabled');
+      }
       if(secondsVal === 0){ //== works but === for now, will be explained
         minutes.text(minutesVal - 1);
         seconds.text(59);
