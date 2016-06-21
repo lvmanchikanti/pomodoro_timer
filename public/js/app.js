@@ -8,24 +8,27 @@ $(document).ready(function(){
   var minutes = $('#minutes');
   var seconds = $('#seconds');
   var breakBtn = $('#break');
+
 // setup
   start.on('click', startCountdown);
-  //breakBtn.on('click', takeABreak);
+  breakBtn.on('click', takeABreak);
 
 // functions
-  // function takeABreak(){
-  //   alert('Take a break!');
-  // }
+  function takeABreak(){
+    minutes.text('05');
+    seconds.text('00');
+    startCountdown();
+  }
+
   function startCountdown() {
-    setInterval(function(){
+    var countdown = setInterval(function(){
       var secondsVal = +seconds.text(); //plus sign makes this behave like a num
       var minutesVal = +minutes.text();
       if(secondsVal === 0 && minutesVal === 0){
         breakBtn.removeClass('disabled');
         breakBtn.removeAttr('disabled');
-        breakBtn.click(function(){
-          alert("Break button is enabled");
-        });
+        clearInterval(countdown);
+        return;
       }
       if(secondsVal === 0){ //== works but === for now, will be explained
         minutes.text(minutesVal - 1);
