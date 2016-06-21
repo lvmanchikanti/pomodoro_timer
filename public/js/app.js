@@ -15,10 +15,14 @@ $(document).ready(function(){
   function startCountdown() {
     setInterval(function(){
       var secondsVal = +seconds.text(); //plus sign makes this behave like a num
-      if(secondsVal === 0){
+      if(secondsVal === 0){ //== works but === for now, will be explained
         seconds.text(59);
       }else {
-        seconds.text(secondsVal - 1);
+          if(secondsVal <= 10){
+            seconds.text("0" + (secondsVal-1));
+          }else {
+            seconds.text(secondsVal - 1);
+          }
       }
     }, 1000);
   }
